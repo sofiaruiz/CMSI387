@@ -1,2 +1,2 @@
 # CMSI387
-Sofia and Katie's assignments for Operating Systems
+Sofia, Moriah, and Katie's assignments for Operating Systems
