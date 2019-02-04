@@ -7,6 +7,7 @@ int main( int argc, char * argv[] ) {
    int number;
    int index = 0;
    int sum = 0;
+   float average = 0;
 
    while ( 1 ) {
        printf( "Enter a number: " );
@@ -19,9 +20,10 @@ int main( int argc, char * argv[] ) {
        printf("%d\n", sum );
 
        index++;
+       average = sum / (index);
    }
 
-   printf( "Sum: %d\nAverage: %d", sum, sum/(index));
+   printf( "Sum: %d\nAverage: %f\n", sum, average);
    exit( 0 );
 
 }
