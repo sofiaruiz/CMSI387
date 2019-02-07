@@ -10,6 +10,9 @@
 
 3. Of all the topics previewed in chapter one of the text book, which one are you most looking forward to learning more about? Why? 
 
+        Of all the topics that were covered in chapter one the one that we are most interested in learning about is the scheduling of threads that will be talked about in chapter three.  We are curious to learn how each processor will choose which thread to pay attention to at each moment and why those decisions are made because in the book the author mentions that even though there are many solutions to this problem, there really isn't one solution that is going to "keep everyone happy all the time", so we would want to know what approaches are taken to at least try to keep users happy.   
+
+
 4. Suppose thread A goes through a loop 100 times, each time performing one disk I/O operation, taking 10 milliseconds, and then some computation, taking 1 millisecond. While each 10-millisecond disk operation is in progress, thread A cannot make any use of the processor. Thread B runs for 1 second, purely in the processor, with no I/O. One millisecond of processor time is spent each time the processor switches threads; other than this switching cost, there is no problem with the processor working on thread B during one of thread A's I/O operations. (The processor and disk drive do not contend for memory access bandwidth, for example.)
 
     a) Suppose the processor and disk work purely on thread A until its completion, and then the processor switches to thread B and runs all of that thread. What will the total elapsed time be?
