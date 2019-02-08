@@ -45,6 +45,6 @@
 ![GanttChart5](hw1-6.5.png)
 ![GanttChart6](hw1-6.6.png)
 
-    The order shown in chart 1, T1 followed by T2 and then by T3, had the shortest average turnaround time of 3.33 seconds. The scheduling policy that minimizes the average response time and produces this order is called Shortest Job First [SJF] scheduling.
+   The order shown in chart 1, T1 followed by T2 and then by T3, had the shortest average turnaround time of 3.33 seconds. The scheduling policy that minimizes the average response time and produces this order is called Shortest Job First [SJF] scheduling.
 
 7. Done in separate file 
