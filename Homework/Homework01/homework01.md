@@ -38,6 +38,6 @@
 
 6. Suppose a system has three threads (T1, T2, and T3) that are all available to run at time 0 and need one, two, and three seconds of processing, respectively. Suppose each thread is run to completion before starting another. Draw six different Gantt charts, one for each possible order the threads can be run in. or each chart, compute the turnaround time of each thread; that is, the time elapsed from when it was ready (time 0) until it is complete. Also, compute the average turnaround time for each order. Which order has the shortest average turnaround time? What is the name of the scheduling policy that produces this order?
 
-    The order shown in chart 1, T1 followed by T2 and then by T3, had the shortest average turnaround time of 3.33 seconds. The policy is called Shortest Job First [SJF] scheduling, which minimizes the average response time.
+    The order shown in chart 1, T1 followed by T2 and then by T3, had the shortest average turnaround time of 3.33 seconds. The scheduling policy that minimizes the average response time and produces this order is called Shortest Job First [SJF] scheduling.
 
 7. Done in separate file 
