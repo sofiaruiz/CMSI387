@@ -1,0 +1,17 @@
+Nguyen/Ruiz/Tolliver
+
+CMSI 387 Operating Systems
+	Semester Project
+===================================
+
+This is a wonderful idea.  Having this kind of list would be very
+useful to system administrators as well as normal users.  Having it
+be part of the kernel means there is access to more lower-level
+resources as well.
+
+There are already operating system tools in place that do this
+ABOVE the kernel level, but encapsulating the operations into the 
+kernel is a worthy project!
+
+Project approved.  Good work and good luck!
+
