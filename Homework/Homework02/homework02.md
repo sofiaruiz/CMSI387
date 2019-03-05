@@ -1,3 +1,3 @@
 # Homework 02
 
-2. This would be a bug because the state could change between getSeatsRemaining() being called and getCashOnHand() being called. This would make the variables seatsRemaining and cashOnHand refer to two completely different states, instead of the same state as intended. 
+2. This would be a bug because if the state changes between the time getSeatsRemaining() is called and getCashOnHand() is called then seatsRemaining would refer to a different state than cashOnHand, instead of both variables referring to the same state as intended. 
