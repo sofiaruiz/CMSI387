@@ -1,34 +1,40 @@
-//TODO: reduce the size of the buffer
-// TODO: Second, you need a test program that has multiple threads doing insertions and retrievals, with some way to see the diﬀerence between when each operation is started and when it completes
-//TODO: need to see that the retrieved values are correct.
-
 public class BoundedBuffer {
     private Object[] buffer = new Object[5];
     private int numOccupied = 0;
     private int firstOccupied = 0;
 
     public synchronized void insert(Object o) throws InterruptedException {
-        System.out.println( "numOccupied: " + numOccupied + " buffer.length: " + buffer.length);
-        while (numOccupied == buffer.length) {
-            wait();
+        if ( numOccupied == buffer.length ) {
+            while (numOccupied == buffer.length) {
+                wait();
+                buffer[(firstOccupied + numOccupied) % buffer.length] = o;
+                numOccupied++;
+                notifyAll();
+            }
+        } else {
             buffer[(firstOccupied + numOccupied) % buffer.length] = o;
             numOccupied++;
-            notifyAll();
         }
-        // what I think it is missing:
-        buffer[(firstOccupied + numOccupied) % buffer.length] = o;
-        numOccupied++;
-
     }
 
     public synchronized Object retrieve() throws InterruptedException {
-        while (numOccupied == 0) {
-            wait();
+        if ( numOccupied == 0 ) {
+            while (numOccupied == 0) {
+                wait();
+                System.out.println("Consumer waiting because numOccupied = " + numOccupied );
+                Object retrieved = buffer[firstOccupied];
+                buffer[firstOccupied] = null;
+                firstOccupied = (firstOccupied + 1) % buffer.length;
+                numOccupied--;
+                notifyAll();
+                return retrieved;
+            }
+        }
+        else {
             Object retrieved = buffer[firstOccupied];
             buffer[firstOccupied] = null;
             firstOccupied = (firstOccupied + 1) % buffer.length;
             numOccupied--;
-            notifyAll();
             return retrieved;
         }
         return -1;
@@ -41,4 +47,61 @@ public class BoundedBuffer {
         }
         System.out.println();
     }
+
+    public int getBufferLength() {
+        return buffer.length;
+    }
+
+    public class ProducingThread extends Thread {
+        public void run() {
+            System.out.println( "Producer has launched" );
+            try {
+                while ( numOccupied < buffer.length ) {
+                    int number = (int)Math.floor(Math.random() * 101);
+                    insert(number);
+                    System.out.println( "Producer added " + number + " to buffer." );
+                        System.out.println( "Producer is sleeping..." );
+                    Thread.sleep(323);
+                }
+            } catch (Exception e) {
+                System.out.println( "Buffer is full" );
+            }
+
+            System.out.println( "Producer is done." );
+
+        }
+    }
+
+    public class ConsumingThread extends Thread {
+        public void run() {
+            System.out.println( "Consumer has launched" );
+            try {
+                System.out.println( "Consumer has launched" );
+                while ( numOccupied > 0 ) {
+                    Object o = retrieve();
+                    System.out.println( "Consumer has taken item " + o );
+                    Thread.sleep(400);
+                }
+            } catch (Exception e) {
+                System.out.println( "Consumption was interrupted" );
+            }
+            System.out.println( "Consumer is done." );
+        }
+    }
+
+    public void testBuffer() {
+        ProducingThread p = new ProducingThread();
+        ConsumingThread c = new ConsumingThread();
+
+        System.out.println( "___________Testing BoundedBuffer___________" );
+        System.out.println( "Producer should fill the buffer to capacity and the consumer should completely empty it.\n" );
+        p.start();
+        c.start();
+    }
+
+    public static void main (String args[]) {
+        BoundedBuffer b = new BoundedBuffer();
+        b.testBuffer();
+    }
+
  }
