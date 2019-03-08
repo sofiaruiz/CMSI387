@@ -4,40 +4,24 @@ public class BoundedBuffer {
     private int firstOccupied = 0;
 
     public synchronized void insert(Object o) throws InterruptedException {
-        if ( numOccupied == buffer.length ) {
-            while (numOccupied == buffer.length) {
-                wait();
-                buffer[(firstOccupied + numOccupied) % buffer.length] = o;
-                numOccupied++;
-                notifyAll();
-            }
-        } else {
-            buffer[(firstOccupied + numOccupied) % buffer.length] = o;
-            numOccupied++;
+        while (numOccupied == buffer.length) {
+            wait();
         }
+        buffer[(firstOccupied + numOccupied) % buffer.length] = o;
+        numOccupied++;
+        notifyAll();
     }
 
     public synchronized Object retrieve() throws InterruptedException {
-        if ( numOccupied == 0 ) {
-            while (numOccupied == 0) {
-                wait();
-                System.out.println("Consumer waiting because numOccupied = " + numOccupied );
-                Object retrieved = buffer[firstOccupied];
-                buffer[firstOccupied] = null;
-                firstOccupied = (firstOccupied + 1) % buffer.length;
-                numOccupied--;
-                notifyAll();
-                return retrieved;
-            }
+        while (numOccupied == 0) {
+            wait();
         }
-        else {
-            Object retrieved = buffer[firstOccupied];
-            buffer[firstOccupied] = null;
-            firstOccupied = (firstOccupied + 1) % buffer.length;
-            numOccupied--;
-            return retrieved;
-        }
-        return -1;
+        Object retrieved = buffer[firstOccupied];
+        buffer[firstOccupied] = null;
+        firstOccupied = (firstOccupied + 1) % buffer.length;
+        numOccupied--;
+        notifyAll();
+        return retrieved;
     }
 
     public void printBuffer() {
