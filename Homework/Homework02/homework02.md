@@ -36,3 +36,4 @@ To write this program, I first used classwork 6 in which we had already ceated a
 9. Figure 7.20 [page 324] contains a simple C program that loops three times, each time calling the fork() system call. Afterward it sleeps for 30 seconds. Compile and run this program, and while it is in its 30-second sleep, use the ps command in a second terminal window to get a listing of processes. How many processes are shown running the program? Explain by drawing a family tree of the processes, with one box for each process and a line connecting each (except the first one) to its parent.
 
 10 processes are shown in the terminal, 2 from bash and the other 8 from the "C" program.
+![alt text](hw2-9.png)
