@@ -1,4 +1,4 @@
-public class BoundedBuffer {
+public class BoundedBuffer4 {
     private Object[] buffer = new Object[5];
     private int numOccupied = 0;
     private int firstOccupied = 0;
