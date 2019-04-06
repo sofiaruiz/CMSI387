@@ -2,7 +2,11 @@
 
 1. Write an implementation of the Dining Philosophers program, demonstrating deadlock avoidance.
 
+Code can be found in "dining_philosophers.py"
+
 2. Write a short paragraph explaining why your program is immune to deadlock?
+
+The problem with the original dining philosophers problem is that if a philosopher sees one fork on the table they will pick it up, even if there is no other fork next to them, which can result in deadlock because there will never be enough forks for all of the philosophers to have two. In our implementation, the philosophers will only pick up a fork if there is another one for them to pick up, if they pick one up and they can't pick another one up they will immediately set it down for another philosopher to grab. This prevents deadlock. 
 
 3. Modify the file-processes.cpp program from Figure 8.2 on page 338 to simulate this shell command:
 ```
