@@ -10,6 +10,10 @@ int main() {
 		perror("error forking");
 		return -1;
 	} else if (returnedValue == 0){
+		if(close(STDIN_FILENO) < 0){
+	             perror("error closing standard output");
+	              return -1;
+	          }
 		if(open("/etc/passwd", O_RDONLY) < 0){
 			perror("error opening file");
 			return -1;
