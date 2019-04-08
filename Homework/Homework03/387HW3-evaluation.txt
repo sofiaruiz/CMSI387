@@ -1,0 +1,35 @@
+
+Evaluation for Homework 3
+CMSI 387 - Operating Systems
+============================
+
+Question 1: dining philosophers program:   20.00 points out of 20 possible
+Question 2: why immune explanation     :   10.00 points out of 10 possible
+Question 3: file processing "C" program:   20.00 points out of 20 possible
+Question 4: mmap program "C" program   :   15.00 points out of 20 possible
+Question 5: appropriate class explained:   10.00 points out of 10 possible
+
+Total possible points:     80.00 points
+           your score:     75.00 points
+       homework total:     75.00/80.00 = 93.75% which is an A-minus
+
+Comments:
+---------
+I initially got a syntax error from your dining philosophers program, but I fixed
+it and it ran fine.
+
+I had trouble with your problem_four.cpp though.  I couldn't get it to build, and
+it kept giving me linker errors.  I wasn't able to get that fixed, but your code
+looks correct, so I gave you partial credit.
+
+Nice work!
+
+Semester so far:
+
+   homework01 @ 10%:  100.00% = 10.00 points
+   homework02 @ 10%:  100.00% = 10.00 points
+   homework03 @ 10%:   93.75% =  9.38 points
+   particip.  @ 10%:  100.00% = 10.00 points
+   proj pt. 1 @ 20%:  100.00% = 20.00 points
+
+       total points:  59.38 out of 60.00 = 98.97% which is an A-plus
