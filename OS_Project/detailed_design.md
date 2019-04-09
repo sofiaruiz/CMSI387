@@ -1,6 +1,6 @@
 #### 2.1 – Detailed list of Linux modules that will be modified/affected
 
-For our kernel modification project we will not be modifying any Linux modules. We will however be relying on existing kernel functionality in order to implement our new system call (see class diagram below).
+For our kernel modification project we will not be modifying any Linux modules. We will however be relying on existing kernel functionality and library functions in order to implement our new system call (see diagram below).
 
 #### 2.2 – Detailed list of any new modules that you will produce [or 'Not Applicable' if there are none]
 
@@ -8,8 +8,8 @@ For our project we will be creating a new processInfo module. This module will i
 
 #### 2.3 - Class diagram showing affected modules [and any new modules] and how they related to one another
 
-![alt text](class_diagram.png) 
+![alt text](diagram.png) 
 
 #### 2.4 – List or table of explanations of all command line options that will be implemented
 
-From our current understanding, the new system call that we create will not be executed from the command line but rather from a test file that calls it from a specific syscall value. From here, the information that it outputs to the kernel log can be checked using the 'dmesg' command, which brings up said logs within the terminal. 
+The new system call that we create will not be executed from the command line but rather from a test file that calls it from a specific syscall value. From here, the information that it outputs to the kernel log can be checked using the 'dmesg' command, which brings up said logs within the terminal. 
