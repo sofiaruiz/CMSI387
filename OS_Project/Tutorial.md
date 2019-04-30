@@ -2,7 +2,6 @@
 
 In order to complete this kernel modification, you should have Oracle Virtual Box installed. You can download the VM at this [link](https://www.virtualbox.org/wiki/Downloads).
 
-
 1. Download source
 
 > wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.36.tar.xz
