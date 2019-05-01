@@ -6,7 +6,7 @@ In order to complete this kernel modification, you should have Oracle Virtual Bo
 
 Notes:
 1. Your VM will need about 40GB of storage (I recommend no less than that). This can be set during set up of your machine when you are asked for file location and size.
-    ![Setting Hard Disk Size](hard_disk_size.jpg)
+    ![Setting Hard Disk Size](hard_disk_size.JPG)
 2. Your VM will need at least 2000MB of memory. You can set this while your VM is not running by selecting your VM then going selecting Settings. In the settings pop-up, click System on the left-hand side then on the Motherboard tab.
     ![Changing Memory Settings](memory_settings.JPG)
 
