@@ -60,3 +60,27 @@ asmlinkage long sys_listProcessInfo(void) {
 }
 
 ```
+
+To test this syscall, we made a c program called test.c that simply calls our syscall and outputs whether or not it ran.
+
+```C
+#include <stdio.h>
+#include <linux/kernel.h>
+#include <sys/syscall.h>
+#include <unistd.h>
+
+int main()
+{  
+    printf("Invoking 'listProcessInfo' system call\n");
+         
+    long int ret_status = syscall(549); // 549 is the syscall number
+         
+    if(ret_status == 0) 
+         printf("System call 'listProcessInfo' executed correctly.\n Use dmesg to check processInfo\n");
+    
+    else 
+         printf("System call 'listProcessInfo' did not execute as expected\n");
+          
+     return 0;
+}
+```
