@@ -1,26 +1,62 @@
 # Kernel Modification Tutorial
 
+## Set up Your VM
+
 In order to complete this kernel modification, you should have Oracle Virtual Box installed. You can download the VM at this [link](https://www.virtualbox.org/wiki/Downloads).
 
-1. Download source
+Notes:
+1. Your VM will need about 40GB of storage (I recommend no less than that). This can be set during set up of your machine when you are asked for file location and size.
+    ![Setting Hard Disk Size](hard_disk_size.jpg)
+2. Your VM will need at least 2000MB of memory. You can set this while your VM is not running by selecting your VM then going selecting Settings. In the settings pop-up, click System on the left-hand side then on the Motherboard tab.
+    ![Changing Memory Settings](memory_settings.JPG)
 
-> wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.36.tar.xz
+## Build the Kernel
 
-2. extract files
+To build the kernel, I followed this tutorial until step 9 where you test the system call. Before this step, I got an error upon rebooting my kernel that looked like this:
+> [ end Kernel panic - not syncing: System is deadlocked on memory]
 
-> sudo tar -xvf linux-4.17.4.tar.xz -C/usr/src/
+To fix this, follow step 2 of the notes.
 
-https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872
+Now, you can follow the rest of the tutorial to get a hello world syscall and compile the kernel.
 
-follow this up until Step 9. Test the System Call
+# Implementing Our Custom System Call: processInfo
 
-After restarting kernel got error:
- [ end Kernel panic - not syncing: System is deadlocked on memory]
+This system call will display the PID (process ID), the process' state, priority, number of children, start time, time spent in user mode, time spent in system mode, and the user ID of the process owner. I will paste and explain the code below.
 
-To fix, power down your virtual machine. In the oracle virtualbox menu select your machine and go to settings. Under the System tab, make sure your memory is at at least 2000MB.
+```C
+#include<linux/kernel.h>
+#include<linux/init.h>
+#include<linux/sched.h>
+#include<linux/syscalls.h>
 
-Now reboot your kernel, select Ubuntu and it should boot fine.
+#include "processInfo.h"
 
-You can type uname -a and you should see Linux [your machine name] [your kernel version] [date you compiled kernel] and some other info. This means the kernel has successfully compiled.
+asmlinkage long sys_listProcessInfo(void) {
 
-Now we can go to the testing step from the tutorial above.
+    struct task_struct *task;
+
+    for_each_process(task) {
+
+	    printk(
+	      "Process: %s\n \
+	       Process ID: %ld\n \
+	       Process State: %ld\n \
+	       Priority: %ld\n \
+	       Start Time: %llu\n \
+	       Time in User Mode: %ld\n \
+	       Time in System Mode: %ld\n", \
+	       task->comm, \
+	       (long)task_pid_nr(task), \
+	       (long)task->state, \
+	       (long)task->prio, \
+		task->start_time,
+	       (long)task->utime, \
+	       (long)task->stime
+	    );
+
+  }
+
+  return 0;
+}
+
+```
