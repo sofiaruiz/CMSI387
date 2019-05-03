@@ -1,5 +1,7 @@
 # Kernel Modification Tutorial
 
+We decided to create this kernel modification in order to organize and pull out what we believed to be the most important info from the 'ps' command. 
+
 ## Set up Your VM
 
 In order to complete this kernel modification, you should have Oracle Virtual Box installed. You can download the VM at this [link](https://www.virtualbox.org/wiki/Downloads).
@@ -12,6 +14,23 @@ Notes:
 
 ## Build the Kernel
 
+Before we compiled our 'processInfo' system call, we first began with a Hello World system call to learn more about this process and the operating system in general. The general steps we followed for creating a new system call are as follows: 
+
+1. Extract the kernel source code 
+2. cd into this new directory
+3. Create a new directory for the system call and cd into it 
+4. Create the c file for the system call 
+5. Create a "Makefile" in this directory
+6. Add your new directory to the kernel's Makefile
+7. Add the new system call to the system call table 
+8. Add the new system call to the system call header file 
+9. Install necessary packages 
+10. cd into linux directory and type:
+>sudo make menuconfig
+11. Compile the kernel
+12. Restart and test the system call 
+
+This tutorial was very helpful in the process: [link](https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872).
 To build the kernel, I followed this tutorial until step 9 where you test the system call. Before this step, I got an error upon rebooting my kernel that looked like this:
 > [ end Kernel panic - not syncing: System is deadlocked on memory]
 
@@ -61,7 +80,7 @@ asmlinkage long sys_listProcessInfo(void) {
 
 ```
 
-To test this syscall, we made a c program called test.c that simply calls our syscall and outputs whether or not it ran.
+To test this syscall, we made a c program called test.c that simply calls our syscall and outputs whether or not it ran. The process info output of a successful system call is located in the kernel logs. 
 
 ```C
 #include <stdio.h>
