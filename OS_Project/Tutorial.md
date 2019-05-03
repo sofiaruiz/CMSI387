@@ -103,3 +103,4 @@ int main()
      return 0;
 }
 ```
+![Terminal Output](terminal.png)
